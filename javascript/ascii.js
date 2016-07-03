@@ -1,6 +1,8 @@
 var L = parseInt(readline());
 var H = parseInt(readline());
-var T = readline();
+var T = readline().toUpperCase();
+var N = T.length;
+
 var alphabet = {
     'A':[],
     'B':[],
@@ -33,13 +35,27 @@ var alphabet = {
 
 for (var i = 0; i < H; i++) {
     var ROW = readline();
-
-    letter = 0;
+    
+    index = 0;
     for (var letter in alphabet) {
-        alphabet[letter][i]=ROW.substr(letter,L);
-        letter += L;
-    };
+        alphabet[letter][i] = ROW.substr(index,L);
+        index += L;
+    }
 }
 
-printErr(alphabet);
-print('E');
+var output = "";
+
+for ( var line = 0 ; line < H ; line++ )
+{
+    for( var letter = 0 ; letter < N ; letter++)
+    {
+        var charToPrint = T.charAt(letter);
+        if (charToPrint < "A" || charToPrint > "Z") {
+            charToPrint = "?";
+        }
+        output += alphabet[charToPrint][line];
+    }
+    output += "\n"
+}
+
+print(output);
